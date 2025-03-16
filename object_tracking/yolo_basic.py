@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import time
 
-yolo_path = "yolo-coco"
+yolo_path = "/home/ameria/MRSD/16-662 Robot Autonomy/Autonomy_Project/RobotAutonomy---SwordFightingRobot/object_tracking"
 labelsPath = f"{yolo_path}/coco.names"
 weightsPath = f"{yolo_path}/yolov3.weights"
 configPath = f"{yolo_path}/yolov3.cfg"
@@ -14,7 +14,7 @@ COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
 print("[INFO] Loading YOLO model...")
 net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 ln = net.getLayerNames()
-ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
 pipeline = rs.pipeline()
 config = rs.config()
